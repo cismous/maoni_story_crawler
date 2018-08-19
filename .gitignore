@@ -8,4 +8,4 @@ logs/
 .tmp/
 .vscode/
 config.local.js
-.local.bat
+local.bat
