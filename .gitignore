@@ -7,5 +7,5 @@ logs/
 .DS_Store
 .tmp/
 .vscode/
-.config.local.js
+config.local.js
 .local.bat
