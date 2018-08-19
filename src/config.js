@@ -1,3 +1,5 @@
+// 合并配置文件, config.js 为默认配置文件， config.local.js 为用户配置文件
+
 const path = require('path');
 const fs = require('fs');
 let config = require('../config.js');

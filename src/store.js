@@ -1,4 +1,4 @@
-// init temp, store has crawler chapter.
+// 将爬取过的文章全部存放到 local.bat 文件里
 
 const path = require('path');
 const fs = require('fs');

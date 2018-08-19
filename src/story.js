@@ -1,5 +1,16 @@
 const puppeteer = require('puppeteer');
 
+/**
+ * 从网站上爬取内容，并返回最新章节标题和内容
+ * `
+ * {
+ *  title: '', // 文章标题
+ *  href: '', // 文章对应url地址
+ *  content: '', // 文章内容
+ * }
+ * `
+ * @returns {Promise}
+ */
 module.exports = ({ domain, bookUrl }) => {
   return new Promise(async (resolve, reject) => {
     const browser = await puppeteer.launch({

@@ -1,3 +1,5 @@
+// 机器人，发送文章内容到 telegram 机器人
+
 const Telegram = require('telegraf')
 const SocksAgent = require('socks5-https-client/lib/Agent');
 const socksAgent = new SocksAgent({
