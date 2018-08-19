@@ -9,7 +9,6 @@ module.exports = () => {
     localConfig = require(localConfigPath);
     return Object.assign(config, localConfig);
   } catch (err) {
-    console.log(err);
     return config;
   }
 }
