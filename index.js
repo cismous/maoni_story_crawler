@@ -20,7 +20,6 @@ async function init() {
   store.add(title);
 }
 
-const rate = '0 */2 * * *';
-schedule.scheduleJob(rate, init);
+schedule.scheduleJob(config.job, init);
 
 log.std('boot success!');
