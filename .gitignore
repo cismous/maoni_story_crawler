@@ -1,0 +1,11 @@
+/node_modules
+*.log
+npm-debug.log
+.logs/
+logs/
+.idea/
+.DS_Store
+.tmp/
+.vscode/
+.config.local.js
+.local.bat

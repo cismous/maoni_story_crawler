@@ -1,0 +1,21 @@
+{
+  "name": "story",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:cismous/maoni_story_crawler.git"
+  },
+  "author": "cismous@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "node-schedule": "1.3.0",
+    "puppeteer": "1.7.0",
+    "socks5-https-client": "1.2.1",
+    "telegraf": "3.22.2"
+  }
+}
