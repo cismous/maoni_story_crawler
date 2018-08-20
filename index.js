@@ -9,7 +9,6 @@ if (!config.token) return log.err('Telegram bot token is needed!');
 
 // 如果没有chat id, 直接报错
 if (!config.chatID) return log.err('Telegram chat id is needed!');
-const bot = require('./src/bot')(config.token);
 
 // 如果没有配置域名和书籍路径，直接报错
 if (!config.domain || !config.bookUrl) return log.err('book config error!');
@@ -21,11 +20,15 @@ async function init() {
 
   const { title, content } = result;
   if (store.has(title)) return log.std(`Chapter: ${title} already existed!`);
+
+  const bot = require('./src/bot')(config.token);
   bot.telegram.sendMessage(config.chatID, content);
+  bot.stop();
+
   store.add(title);
 }
 
 // 开启定时任务
 schedule.scheduleJob(config.job, init);
 
-log.std('boot success!');
+log.std('Boot success!');
