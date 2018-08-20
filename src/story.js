@@ -22,6 +22,7 @@ module.exports = ({ domain, bookUrl }) => {
     await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.42 Safari/537.36')
     await page.setRequestInterception(true);
     page.on('request', (request) => {
+      // 这里取消所有资源文件的加载
       if (['image', 'stylesheet', 'font', 'script'].indexOf(request.resourceType()) !== -1) {
         request.abort();
       } else {

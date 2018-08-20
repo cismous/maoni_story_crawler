@@ -8,6 +8,7 @@
 
 - Telegram bot - 需要创建 telegram 机器人
 - Telegram channel - 需要创建 telegram channel, 并设置机器人为管理员
+- If Telegram is blocked in china, Telegram need config proxy,
 
 # Usage
 
@@ -17,9 +18,15 @@
 
 ## Config
 
-add file `config.local.js` to project root directory.
+Add file `config.local.js` to project root directory.
 
-add content `{ module.exports = { token: '', chatID: '' } }` to `config.local.js` file.
+Add config
+
+`{ module.exports = { token: '', chatID: '', job: '0 */2 * * *' } }` to `config.local.js`.
+
+add optional config
+
+`{ module.exports = { token: '', chatID: '', job: '0 */2 * * *', proxyHost: '127.0.0.1', proxyPort: '1080' } }` to `config.local.js`
 
 Get token from https://core.telegram.org/bots/api
 

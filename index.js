@@ -21,7 +21,7 @@ async function init() {
   const { title, content } = result;
   if (store.has(title)) return log.std(`Chapter: ${title} already existed!`);
 
-  const bot = require('./src/bot')(config.token);
+  const bot = require('./src/bot')(config);
   bot.telegram.sendMessage(config.chatID, content);
   bot.stop();
 

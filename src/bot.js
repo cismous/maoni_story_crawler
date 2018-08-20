@@ -3,16 +3,21 @@
 const Telegram = require('telegraf')
 const SocksAgent = require('socks5-https-client/lib/Agent');
 const log = require('./log');
-const socksAgent = new SocksAgent({
-  socksHost: '127.0.0.1',
-  socksPort: 1080,
-});
 
-module.exports = token => {
-  const bot = new Telegram(token, { telegram: { agent: socksAgent } })
+module.exports = (data) => {
+  const opts = {}
+  if (data.proxyHost && data.proxyPort) {
+    opts.telegram = {
+      agent: new SocksAgent({
+        socksHost: data.proxyHost,
+        socksPort: data.proxyPort,
+      }),
+    };
+  }
+  const bot = new Telegram(data.token, opts);
 
   bot.startPolling();
-  bot.catch(err => log.err(err))
+  bot.catch(err => log.err(err));
 
   return bot;
 };
