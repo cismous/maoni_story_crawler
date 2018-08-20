@@ -14,19 +14,39 @@
 
 ## Installation
 
-`npm install`
+```shell
+npm install
+```
 
 ## Config
 
 Add file `config.local.js` to project root directory.
 
-Add config
+Add config content
 
-`{ module.exports = { token: '', chatID: '', job: '0 */2 * * *' } }` to `config.local.js`.
+```js
+{
+  module.exports = {
+    token: '',
+    chatID: '',
+    job: '0 */2 * * *'
+  }
+}
+```
 
-add optional config
+add optional config content
 
-`{ module.exports = { token: '', chatID: '', job: '0 */2 * * *', proxyHost: '127.0.0.1', proxyPort: '1080' } }` to `config.local.js`
+```js
+{
+  module.exports = {
+    token: '',
+    chatID: '',
+    job: '0 */2 * * *',
+    proxyHost: '127.0.0.1',
+    proxyPort: '1080'
+  }
+}
+```
 
 Get token from https://core.telegram.org/bots/api
 
@@ -34,4 +54,6 @@ Get chatID from telegram channel id
 
 ## Run
 
-`npm run start`
+```shell
+npm run start
+```
