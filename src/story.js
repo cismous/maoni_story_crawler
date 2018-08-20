@@ -35,7 +35,7 @@ module.exports = ({ domain, bookUrl }) => {
     const list = bookHtml.match(/<a .*?">(.*?)<\/a>/g);
 
     const data = [];
-    list.map(val => {
+    for (val of list) {
       const item = {};
       if ((match = /href="(.*?)"/g.exec(val))) {
         item.href = match[1];
@@ -44,7 +44,7 @@ module.exports = ({ domain, bookUrl }) => {
           if (item.title.startsWith('第')) data.push(item);
         }
       }
-    });
+    }
 
     const latest = data[0];
     if (!latest) {
