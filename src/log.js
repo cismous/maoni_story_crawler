@@ -9,6 +9,6 @@ module.exports = {
   },
 
   err(msg) {
-    process.stdout.error(dateformat(Date.now(), format) + ' - ' + msg + '\n');
+    process.stderr.write(dateformat(Date.now(), format) + ' - ' + msg + '\n');
   },
 };

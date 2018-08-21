@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const log = require('./log');
 
 /**
  * 从网站上爬取内容，并返回最新章节标题和内容
@@ -19,6 +20,11 @@ module.exports = ({ domain, bookUrl }) => {
       handleSIGINT: true,
     });
     const page = await browser.newPage();
+
+    page.on('error', error => {
+      log.err('page error' + error.message);
+    });
+
     await page.setUserAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.42 Safari/537.36')
     await page.setRequestInterception(true);
     page.on('request', (request) => {
@@ -53,14 +59,18 @@ module.exports = ({ domain, bookUrl }) => {
     }
 
     await page.goto(domain + latest.href, { waitUntil: 'networkidle0' });
-    await page.waitForSelector('#content');
-    const content = await page.evaluate(() => {
-      const el = document.querySelector('#content')
-      if (el) return el.textContent;
-      return null
-    });
-    if (content) resolve({ ...latest, content })
-    else reject(null);
-    await browser.close();
+    try {
+      await page.waitForSelector('#content');
+      const content = await page.evaluate(() => {
+        const el = document.querySelector('#content')
+        if (el) return el.textContent;
+        return null;
+      });
+      if (content) resolve({ ...latest, content })
+      else reject(null);
+      await browser.close();
+    } catch (error) {
+      reject(error);
+    }
   });
 };

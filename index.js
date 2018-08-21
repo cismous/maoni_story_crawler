@@ -15,17 +15,20 @@ if (!config.domain || !config.bookUrl) return log.err('book config error!');
 
 // 代码执行入口
 async function init() {
-  const result = await story({ domain: config.domain, bookUrl: config.bookUrl })
-  if (result === null) return;
+  try {
+    const result = await story({ domain: config.domain, bookUrl: config.bookUrl })
+    if (result === null) return;
 
-  const { title, content } = result;
-  if (store.has(title)) return log.std(`Chapter: ${title} already existed!`);
+    const { title, content } = result;
+    if (!content) return log.std(`Chapter: ${title} can't get content!`);
+    if (store.has(title)) return log.std(`Chapter: ${title} already existed!`);
 
-  const bot = require('./src/bot')(config);
-  bot.telegram.sendMessage(config.chatID, content);
-  bot.stop();
-
-  store.add(title);
+    const bot = require('./src/bot')(config);
+    bot.telegram.sendMessage(config.chatID, content);
+    bot.stop();
+  } catch (err) {
+    log.err(err && (err.message || err));
+  }
 }
 
 // 开启定时任务
