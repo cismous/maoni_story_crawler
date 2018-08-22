@@ -26,12 +26,13 @@ async function init() {
     const bot = require('./src/bot')(config);
     bot.telegram.sendMessage(config.chatID, content);
     bot.stop();
+
+    store.add(title);
   } catch (err) {
     log.err(err && (err.message || err));
   }
 }
 
+log.std('Boot success!');
 // 开启定时任务
 schedule.scheduleJob(config.job, init);
-
-log.std('Boot success!');

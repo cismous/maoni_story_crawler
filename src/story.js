@@ -63,10 +63,11 @@ module.exports = ({ domain, bookUrl }) => {
       await page.waitForSelector('#content');
       const content = await page.evaluate(() => {
         const el = document.querySelector('#content')
-        if (el) return el.textContent;
+        const indent = '        ';
+        if (el) return indent + el.innerText.replace(/\s\s+/g, `\n\n${indent}`);
         return null;
       });
-      if (content) resolve({ ...latest, content })
+      if (content) resolve({ ...latest, content: latest.title + content })
       else reject(null);
       await browser.close();
     } catch (error) {
