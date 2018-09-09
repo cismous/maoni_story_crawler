@@ -41,9 +41,11 @@ async function init() {
   }
 }
 
-// 初始化先运行一次
-init().then(() => {
-  // 开启定时任务
-  schedule.scheduleJob(config.job, init);
-  log.std('Boot success!');
-})
+// 初始化时首次运行
+init()
+  .then(() => {
+    // 开启定时任务，定时运行抓取任务
+    schedule.scheduleJob(config.job, () => init());
+
+    log.std('Boot success!');
+  })
