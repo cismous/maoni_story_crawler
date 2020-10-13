@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 const log = require('./log');
 
 /**
@@ -15,6 +15,7 @@ const log = require('./log');
 module.exports = ({ domain, bookUrl }) => {
   return new Promise(async (resolve, reject) => {
     const browser = await puppeteer.launch({
+      executablePath: '/Applications/Google\ Chrome.app/Contents/MacOS/Google Chrome',
       headless: true,
       ignoreHTTPSErrors: true,
       handleSIGINT: true,
